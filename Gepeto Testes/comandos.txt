@@ -1,0 +1,6 @@
+python -m venv .venv (Criação da pasta venv)
+./.venv/scripts/activate.ps1 (Ativar venv)
+deactivate (Desativar venv)
+python manage.py migrate (atualizar servidor)
+python manage.py runserver (ligar servidor)
+python manage.py runserver 0.0.0.0:8000 (ligar servidor na porta 8000) 

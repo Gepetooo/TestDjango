@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome {{ nome }}!</h1>
+    <p>This is a simple home page for the tasks app.</p>
+    {% if tarefas %}
+        <table border = 1>
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Edited</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tarefa in tarefas %}
+                    <tr>
+                        <td>{{ tarefa.nome }}</td>
+                        <td>{{ tarefa.descricao }}</td>
+                        <td>{{ tarefa.concluida }}</td>
+                        <td>{{ tarefa.data_criacao }}</td>
+                        <td>{{ tarefa.data_edicao|default:"—" }}</td>
+                        <td>
+                            <a href="{% url 'tarefas:editar' tarefa_id=tarefa.id %}"><button type="button">Edit</button></a>
+                            <a href="{% url 'tarefas:remover' tarefa_id=tarefa.id %}"><button type="button">Remove Task</button></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No tasks yet.</p>
+    {% endif %}
+    <a href="{% url 'tarefas:adicionar' %}"><button type="button">Add Task</button></a>
+</body>
+</html>
